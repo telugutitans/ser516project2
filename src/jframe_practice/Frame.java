@@ -1,7 +1,6 @@
 package jframe_practice;
 
 import java.awt.*;
-
 import javax.swing.*;
 
 public class Frame extends JFrame
@@ -16,7 +15,7 @@ public class Frame extends JFrame
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    Container content = this.getContentPane();
 	    content.setLayout(new BoxLayout(content, BoxLayout.X_AXIS));
-	    content.add(new Options());
+	    content.add(new OptionsPanel());
 	    content.add(new DrawingCanvas());
 	    this.pack();
 	    this.setLocationRelativeTo(null);
