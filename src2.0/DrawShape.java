@@ -5,25 +5,31 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import javax.swing.JLabel;
-
-public class DrawShape extends JLabel implements MouseListener, MouseMotionListener
+/**
+ * This class implements the drawing of shapes drag and drop within canvas.
+ * @author Ashwath Reddy Koppala
+ * @created on 1-29-2020
+ * @version 1.0
+ *
+ */
+public class DrawShape extends JLabel implements MouseListener,MouseMotionListener
 {
-	private int currentx;
-	private int currenty;
-	private int relativex;
-	private int relativey;
-	private String shape_name;
-	private int HEIGHT = 100;
+	private int currentX;
+	private int currentY;
+	private int relativeX;
+	private int relativeY;
+	private String shapeName;
+	private int HEIGHT= 100;
 	private int WIDTH = 100;
 	
-	public DrawShape(String shape, int posx, int posy)
+	public DrawShape(String shape, int posX, int posY)
 	{
-		shape_name = shape;
-		currentx = posx;
-		currenty = posy;
+		shapeName = shape;
+		currentX = posX;
+		currentY = posY;
 		Dimension size = new Dimension(HEIGHT,WIDTH);
 		this.setPreferredSize(size);
-		this.setBounds(currentx, currenty, 100, 100);
+		this.setBounds(currentX, currentY, 100, 100);
 		addMouseListener(this);
 		addMouseMotionListener(this);
 	}
@@ -31,17 +37,17 @@ public class DrawShape extends JLabel implements MouseListener, MouseMotionListe
 	public void paint(Graphics g)
 	{
 		g.setColor(Color.BLUE);
-		if(shape_name.equals("circle"))
+		if(shapeName.equals("circle"))
 		{
 			g.fillOval(0, 0, 100, 100);
 		}
-		else if(shape_name.equals("triangle"))
+		else if(shapeName.equals("triangle"))
 		{
 		    int xPoints[] = {WIDTH/2, 1, WIDTH-1};
 		    int yPoints[] = {1, HEIGHT-1, HEIGHT-1};
 		    g.fillPolygon(xPoints, yPoints, xPoints.length);
 		}
-		else if(shape_name.equals("square"))
+		else if(shapeName.equals("square"))
 		{
 			g.fillRect(1, 1, WIDTH-1, HEIGHT-1);
 		}
@@ -50,8 +56,8 @@ public class DrawShape extends JLabel implements MouseListener, MouseMotionListe
 	@Override
 	public void mousePressed(MouseEvent e) 
 	{
-		relativex = currentx - e.getX();
-		relativey = currenty - e.getY();
+		relativeX = currentX - e.getX();
+		relativeY = currentY - e.getY();
 	}
 
 	@Override
@@ -59,9 +65,9 @@ public class DrawShape extends JLabel implements MouseListener, MouseMotionListe
 	{
 		int x1 = e.getX();
 		int y1 = e.getY();
-		setLocation(x1+relativex,y1+relativey);
-		currentx = x1+relativex;
-		currenty = y1+relativey;
+		setLocation(x1+relativeX,y1+relativeY);
+		currentX = x1+relativeX;
+		currentY = y1+relativeY;
 	}
 	
 	@Override
