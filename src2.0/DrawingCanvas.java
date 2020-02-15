@@ -20,9 +20,26 @@ public class DrawingCanvas extends JPanel implements MouseListener
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		DrawShape figure = new DrawShape(shape.name,e.getX()-50,e.getY());
-		this.add((JLabel)figure); 
-		this.repaint();
+		if(shape.name.equals("circle"))
+		{
+			DrawCircle figure = new DrawCircle(e.getX()-50,e.getY());
+			this.add((JLabel)figure); 
+			this.repaint();
+		}
+		
+		else if(shape.name.equals("square"))
+		{
+			DrawSquare figure = new DrawSquare(e.getX()-50,e.getY());
+			this.add((JLabel)figure); 
+			this.repaint();
+		}
+		
+		else if(shape.name.equals("triangle"))
+		{
+			DrawTriangle figure = new DrawTriangle(e.getX()-50,e.getY());
+			this.add((JLabel)figure); 
+			this.repaint();
+		}
 	}
 
 	public void mouseEntered(MouseEvent arg0) {}
