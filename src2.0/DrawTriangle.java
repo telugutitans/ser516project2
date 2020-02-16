@@ -1,9 +1,12 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Shape;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.Ellipse2D;
+
 import javax.swing.JLabel;
 /**
  * This class implements the drawing of shapes drag and drop within canvas.
@@ -21,6 +24,7 @@ public class DrawTriangle extends JLabel implements MouseListener,MouseMotionLis
 	private String shapeName;
 	private int HEIGHT= 100;
 	private int WIDTH = 100;
+	Shape shape;
 	
 	public DrawTriangle(int posX, int posY)
 	{
@@ -57,9 +61,13 @@ public class DrawTriangle extends JLabel implements MouseListener,MouseMotionLis
 		currentX = x1+relativeX;
 		currentY = y1+relativeY;
 	}
+
 	
 	@Override
-	public void mouseClicked(MouseEvent e) {}
+	public void mouseClicked(MouseEvent e) 
+	{
+		
+	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {}
