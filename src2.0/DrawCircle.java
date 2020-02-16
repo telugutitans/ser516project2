@@ -36,6 +36,8 @@ public class DrawCircle extends JLabel implements MouseListener,MouseMotionListe
 	{
 		g.setColor(Color.BLUE);
 		g.fillOval(0, 0, 100, 100);
+		g.setColor(Color.BLACK);
+		g.fillOval(HEIGHT/2-5, WIDTH/2-5, 10, 10);
 	}
 
 	@Override
