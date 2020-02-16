@@ -1,9 +1,12 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Shape;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.Ellipse2D;
+
 import javax.swing.JLabel;
 /**
  * This class implements the drawing of shapes drag and drop within canvas.
@@ -20,6 +23,7 @@ public class DrawCircle extends JLabel implements MouseListener,MouseMotionListe
 	private int relativeY;
 	private int HEIGHT= 100;
 	private int WIDTH = 100;
+	Shape shape;
 	
 	public DrawCircle(int posX, int posY)
 	{
@@ -39,6 +43,16 @@ public class DrawCircle extends JLabel implements MouseListener,MouseMotionListe
 		g.setColor(Color.BLACK);
 		g.fillOval(HEIGHT/2-5, WIDTH/2-5, 10, 10);
 	}
+	
+	private boolean contain(int x, int y) 
+	{
+		    if (shape == null || 
+		      !shape.getBounds().equals(getBounds())) 
+		    {
+		      shape = new Ellipse2D.Float(HEIGHT/2-5, WIDTH/2-5, 10, 10);
+		    }
+		    return shape.contains(x, y);
+	}
 
 	@Override
 	public void mousePressed(MouseEvent e) 
@@ -50,6 +64,7 @@ public class DrawCircle extends JLabel implements MouseListener,MouseMotionListe
 	@Override
 	public void mouseReleased(MouseEvent e) 
 	{
+		System.out.print("clicked");
 		int x1 = e.getX();
 		int y1 = e.getY();
 		setLocation(x1+relativeX,y1+relativeY);
@@ -58,7 +73,15 @@ public class DrawCircle extends JLabel implements MouseListener,MouseMotionListe
 	}
 	
 	@Override
-	public void mouseClicked(MouseEvent e) {}
+	public void mouseClicked(MouseEvent e) 
+	{
+		int relativeDotX = currentX - e.getX();
+		int relativeDotY = currentY - e.getY();
+		if (this.contain(relativeDotX, relativeDotY))
+		{
+			System.out.print("clicked");
+		}
+	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {}
