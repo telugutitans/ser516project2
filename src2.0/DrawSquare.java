@@ -36,6 +36,10 @@ public class DrawSquare extends JLabel implements MouseListener,MouseMotionListe
 	{
 		g.setColor(Color.BLUE);
 		g.fillRect(1, 1, WIDTH-1, HEIGHT-1);
+		g.setColor(Color.BLACK);
+		g.fillRect(WIDTH-7, 2, WIDTH-2, HEIGHT-2);
+		g.setColor(Color.BLACK);
+		g.fillRect(2, 2, 7, HEIGHT-2);
 	}
 
 	@Override

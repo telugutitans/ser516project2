@@ -43,6 +43,12 @@ public class DrawTriangle extends JLabel implements MouseListener,MouseMotionLis
 		int xPoints[] = {WIDTH/2, 1, WIDTH-1};
 		int yPoints[] = {1, HEIGHT-1, HEIGHT-1};
 		g.fillPolygon(xPoints, yPoints, xPoints.length);
+		g.setColor(Color.BLACK);
+		g.fillOval(WIDTH/2-5, 25 , 10, 10);
+		g.setColor(Color.BLACK);
+		g.fillOval(25, HEIGHT-26 , 10, 10);
+		g.setColor(Color.BLACK);
+		g.fillOval(WIDTH-31, HEIGHT-26 , 10, 10);
 	}
 
 	@Override
