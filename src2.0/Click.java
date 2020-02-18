@@ -9,7 +9,10 @@ import javax.swing.JLabel;
 public class Click
 {
 	private static int numPoints = 0;
-	private static int x1,x2,y1,y2;
+	static int x1;
+	static int x2;
+	static int y1;
+	static int y2;
 	public  Click(int x,int y)
 	{
 		if (numPoints == 0)
@@ -24,15 +27,6 @@ public class Click
 			numPoints=0;
 		}
 	}
-	private void paintLine(Graphics g)
-	{
-		g.drawLine(x1, y1, x2, y2);
-	}
-	   
-	
-	
-	
-	
-	
+
 	
 }

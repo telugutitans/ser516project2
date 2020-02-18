@@ -23,7 +23,6 @@ public class DrawCircle extends JLabel implements MouseListener,MouseMotionListe
 	private int relativeY;
 	private int HEIGHT= 100;
 	private int WIDTH = 100;
-	Shape shape;
 	
 	public DrawCircle(int posX, int posY)
 	{
@@ -46,12 +45,17 @@ public class DrawCircle extends JLabel implements MouseListener,MouseMotionListe
 	
 	private boolean contain(int x, int y) 
 	{
-		    if (shape == null || 
-		      !shape.getBounds().equals(getBounds())) 
-		    {
-		      shape = new Ellipse2D.Float(HEIGHT/2-5, WIDTH/2-5, 10, 10);
-		    }
-		    return shape.contains(x, y);
+		System.out.println(x);
+		System.out.println(y);
+		System.out.println(WIDTH/2);
+		System.out.println(HEIGHT/2);
+		int ans = ((x-(WIDTH/2)) * (x-(WIDTH/2)) + 
+				(y-(HEIGHT/2)) * (y-(HEIGHT/2))) - 25;
+		
+		if(ans<=0)
+			return true;
+		else
+			return false;
 	}
 
 	@Override
@@ -64,7 +68,6 @@ public class DrawCircle extends JLabel implements MouseListener,MouseMotionListe
 	@Override
 	public void mouseReleased(MouseEvent e) 
 	{
-		System.out.print("clicked");
 		int x1 = e.getX();
 		int y1 = e.getY();
 		setLocation(x1+relativeX,y1+relativeY);
@@ -77,7 +80,7 @@ public class DrawCircle extends JLabel implements MouseListener,MouseMotionListe
 	{
 		int relativeDotX = currentX - e.getX();
 		int relativeDotY = currentY - e.getY();
-		if (this.contain(relativeDotX, relativeDotY))
+		if (this.contain(e.getX(), e.getY()))
 		{
 			System.out.print("clicked");
 		}

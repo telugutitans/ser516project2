@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JLabel;
@@ -16,6 +17,11 @@ public class DrawingCanvas extends JPanel implements MouseListener
 		shape = new SelectedShape();
 		this.setLayout(null);
 		addMouseListener(this);
+	}
+	
+	public void paintLine(Graphics g)
+	{
+		g.drawLine(Click.x1, Click.y1, Click.x2, Click.y2);
 	}
 
 	@Override
