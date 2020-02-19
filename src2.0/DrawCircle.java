@@ -23,9 +23,10 @@ public class DrawCircle extends JLabel implements MouseListener,MouseMotionListe
 	private int relativeY;
 	private int HEIGHT= 100;
 	private int WIDTH = 100;
-	
-	public DrawCircle(int posX, int posY)
+	DrawingCanvas canvas;
+	public DrawCircle(int posX, int posY, DrawingCanvas c)
 	{
+		canvas = c;
 		currentX = posX;
 		currentY = posY;
 		Dimension size = new Dimension(HEIGHT,WIDTH);
@@ -45,10 +46,10 @@ public class DrawCircle extends JLabel implements MouseListener,MouseMotionListe
 	
 	private boolean contain(int x, int y) 
 	{
-		System.out.println(x);
-		System.out.println(y);
-		System.out.println(WIDTH/2);
-		System.out.println(HEIGHT/2);
+		//System.out.println(x);
+		//System.out.println(y);
+		//System.out.println(WIDTH/2);
+		//System.out.println(HEIGHT/2);
 		int ans = ((x-(WIDTH/2)) * (x-(WIDTH/2)) + 
 				(y-(HEIGHT/2)) * (y-(HEIGHT/2))) - 25;
 		
@@ -83,6 +84,7 @@ public class DrawCircle extends JLabel implements MouseListener,MouseMotionListe
 		if (this.contain(e.getX(), e.getY()))
 		{
 			System.out.print("clicked");
+			Click c1 = new Click(e.getX()+currentX, e.getY()+currentY, this);
 		}
 	}
 

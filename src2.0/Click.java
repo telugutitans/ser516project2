@@ -13,17 +13,19 @@ public class Click
 	static int x2;
 	static int y1;
 	static int y2;
-	public  Click(int x,int y)
+	public  Click(int x,int y, DrawCircle circle)
 	{
 		if (numPoints == 0)
 		{
 			x1=x;
 			y1=y;
+			numPoints += 1;
 		}
 		else
 		{
 			x2=x;
 			y2=y;
+			circle.canvas.repaint();
 			numPoints=0;
 		}
 	}

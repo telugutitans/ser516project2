@@ -19,8 +19,10 @@ public class DrawingCanvas extends JPanel implements MouseListener
 		addMouseListener(this);
 	}
 	
-	public void paintLine(Graphics g)
+	public void paint(Graphics g)
 	{
+		super.paint(g);
+		System.out.print("line drwan");
 		g.drawLine(Click.x1, Click.y1, Click.x2, Click.y2);
 	}
 
@@ -28,7 +30,7 @@ public class DrawingCanvas extends JPanel implements MouseListener
 	public void mouseClicked(MouseEvent e) {
 		if(shape.name.equals("circle"))
 		{
-			DrawCircle figure = new DrawCircle(e.getX()-50,e.getY());
+			DrawCircle figure = new DrawCircle(e.getX()-50,e.getY(),this);
 			this.add((JLabel)figure); 
 			this.repaint();
 		}
