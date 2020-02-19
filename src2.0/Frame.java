@@ -15,6 +15,15 @@ public class Frame extends JFrame
 	    this.setMinimumSize(new Dimension(800, 600));
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    Container content = this.getContentPane();
+	    JMenuBar menubar = new JMenuBar();
+	    menubar.setMinimumSize(new Dimension(60,40));
+	    this.setJMenuBar(menubar);
+	    JMenu menu = new JMenu("Menu");
+	    menubar.add(menu);
+	    JMenuItem save= new JMenuItem("Save");
+	    JMenuItem load= new JMenuItem("Load");
+	    menu.add(save);
+	    menu.add(load);
 	    content.setLayout(new BoxLayout(content, BoxLayout.X_AXIS));
 	    content.add(new OptionsPanel());
 	    content.add(new DrawingCanvas());

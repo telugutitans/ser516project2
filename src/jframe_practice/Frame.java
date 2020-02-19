@@ -16,7 +16,6 @@ public class Frame extends JFrame
 	    Container content = this.getContentPane();
 	    content.setLayout(new BoxLayout(content, BoxLayout.X_AXIS));
 	    content.add(new OptionsPanel());
-	    content.add(new DrawingCanvas());
 	    this.pack();
 	    this.setLocationRelativeTo(null);
 	    this.setVisible(true);

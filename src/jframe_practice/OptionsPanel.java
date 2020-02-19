@@ -4,7 +4,11 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.*;
 import javax.swing.border.Border;
-
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import javax.swing.Icon;
+import javax.swing.JButton;
 public class OptionsPanel extends JPanel
 {
 	public OptionsPanel()
@@ -14,14 +18,9 @@ public class OptionsPanel extends JPanel
 		Border blackline = BorderFactory.createLineBorder(Color.black);
 		setBorder(blackline);	
 		setLayout(new GridLayout(3,1));
-		
-		Circle circle_button = new Circle();
-		add(circle_button);
-		
-		Triangle triangle_button = new Triangle();
-		add(triangle_button);
-		
-		Square square_button = new Square();
-		add(square_button);
+}
+	public void paint(Graphics g)
+	{
+		g.drawLine(0, 100, 50,150);
 	}
 }
