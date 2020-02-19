@@ -14,8 +14,6 @@ public abstract class PanelInterface extends JPanel
 		Border blackline = BorderFactory.createLineBorder(Color.black);
 		setBorder(blackline);
 		setLayout(new GridLayout(3,1));
-		add(new Circle(100));
-		add(new Triangle(100));
-		add(new Square(100));
+		
 	}
 }
