@@ -59,8 +59,21 @@ public class DrawSquare extends JLabel implements MouseListener,MouseMotionListe
 		currentY = y1+relativeY;
 	}
 	
+	private boolean contain(int x, int y) 
+	{
+		if ((x>2 && x<7 && y>2 && y<97) || (x>92 && x<97 && y>2 && y < 97))
+			return true;
+		else
+			return false;
+	}
+	
 	@Override
-	public void mouseClicked(MouseEvent e) {}
+	public void mouseClicked(MouseEvent e) {
+		if (this.contain(e.getX(), e.getY()))
+		{
+			System.out.print("Square clicked");
+		}
+	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {}

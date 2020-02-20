@@ -15,7 +15,7 @@ import javax.swing.JLabel;
  * @version 1.0
  *
  */
-public class DrawTriangle extends JLabel implements MouseListener,MouseMotionListener
+public class DrawTriangle extends DrawShape implements MouseListener,MouseMotionListener
 {
 	private int currentX;
 	private int currentY;
@@ -26,8 +26,9 @@ public class DrawTriangle extends JLabel implements MouseListener,MouseMotionLis
 	private int WIDTH = 100;
 	Shape shape;
 	
-	public DrawTriangle(int posX, int posY)
+	public DrawTriangle(int posX, int posY, DrawingCanvas c)
 	{
+		super(c,"Triangle");
 		currentX = posX;
 		currentY = posY;
 		Dimension size = new Dimension(HEIGHT,WIDTH);
@@ -49,6 +50,31 @@ public class DrawTriangle extends JLabel implements MouseListener,MouseMotionLis
 		g.fillOval(25, HEIGHT-26 , 10, 10);
 		g.setColor(Color.BLACK);
 		g.fillOval(WIDTH-31, HEIGHT-26 , 10, 10);
+	}
+	
+	private boolean contain(int x, int y) 
+	{
+		System.out.println(x);
+		System.out.println(y);
+		System.out.println(WIDTH/2);
+		System.out.println(30);
+		int ans = ((x-(WIDTH/2)) * (x-(WIDTH/2)) + 
+				(y-(30)) * (y-(30))) - 25;
+		System.out.println(ans);
+		if(ans<=0)
+			return true;
+		
+		ans = ((x-(30)) * (x-(30)) + 
+				(y-(HEIGHT-21)) * (y-(HEIGHT-21))) - 25;
+		if(ans<=0)
+			return true;
+		
+		ans = ((x-(WIDTH - 26)) * (x-(WIDTH - 26)) + 
+				(y-(HEIGHT-21)) * (y-(HEIGHT-21))) - 25;
+		if(ans<=0)
+			return true;
+		
+		return false;
 	}
 
 	@Override
@@ -72,7 +98,11 @@ public class DrawTriangle extends JLabel implements MouseListener,MouseMotionLis
 	@Override
 	public void mouseClicked(MouseEvent e) 
 	{
-		
+		if (this.contain(e.getX(), e.getY()))
+		{
+			System.out.print("clicked triangle");
+			Click c1 = new Click(e.getX()+currentX, e.getY()+currentY, this);
+		}
 	}
 
 	@Override

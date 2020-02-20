@@ -4,6 +4,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Map;
 import java.util.HashMap;
+import java.awt.Point;
+import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 /** 
@@ -15,6 +17,7 @@ public class DrawingCanvas extends JPanel implements MouseListener
 {
 	private SelectedShape shape;
 	private Map<Point,String> hashmap;
+	public ArrayList<Point[]> lineArray = new ArrayList<Point[]>();
 	public DrawingCanvas()
 	{
 		hashmap=new HashMap();
@@ -27,7 +30,13 @@ public class DrawingCanvas extends JPanel implements MouseListener
 	{
 		super.paint(g);
 		System.out.print("line drwan");
-		g.drawLine(Click.x1, Click.y1, Click.x2, Click.y2);
+		
+		for(int i=0; i<lineArray.size(); i++)
+		{
+			Point[] points = lineArray.get(i);
+			g.drawLine(points[0].x, points[0].y, points[1].x, points[1].y);
+		}
+		
 	}
 
 	@Override
@@ -48,7 +57,7 @@ public class DrawingCanvas extends JPanel implements MouseListener
 		
 		else if(shape.name.equals("triangle"))
 		{
-			DrawTriangle figure = new DrawTriangle(e.getX()-50,e.getY());
+			DrawTriangle figure = new DrawTriangle(e.getX()-50,e.getY(),this);
 			this.add((JLabel)figure); 
 			this.repaint();
 		}
