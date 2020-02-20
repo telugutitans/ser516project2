@@ -63,15 +63,16 @@ public class Frame extends JFrame {
 
 	class OpenL implements ActionListener {
 		public String fileName;
+
 		@SuppressWarnings("unchecked")
 		public void actionPerformed(ActionEvent e) {
-			FileInputStream  fileIn = null;
+			FileInputStream fileIn = null;
 			ObjectInputStream in = null;
 			try {
 				JFileChooser chosenFile = new JFileChooser();
 				FileNameExtensionFilter filter = new FileNameExtensionFilter("SER516", "ser");
 				chosenFile.setFileFilter(filter);
-				int showOpenDialog  = chosenFile.showOpenDialog(null);
+				int showOpenDialog = chosenFile.showOpenDialog(null);
 				if (showOpenDialog == JFileChooser.APPROVE_OPTION) {
 					fileName = chosenFile.getSelectedFile().getAbsolutePath();
 					fileIn = new FileInputStream(fileName);
@@ -85,7 +86,7 @@ public class Frame extends JFrame {
 				i.printStackTrace();
 			} catch (ClassNotFoundException e1) {
 			}
-			
+
 			finally {
 				if (in != null) {
 					try {
@@ -122,7 +123,7 @@ public class Frame extends JFrame {
 				fileOut = new FileOutputStream(new File(fileName));
 				out = new ObjectOutputStream(fileOut);
 
-				//out.writeObject(canvas);
+				// out.writeObject(canvas);
 				out.writeObject(canvas.lineArray);
 				out.writeObject(canvas.shapeObject);
 				fileOut.flush();
