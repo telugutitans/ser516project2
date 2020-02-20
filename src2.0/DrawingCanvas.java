@@ -15,16 +15,22 @@ import javax.swing.JPanel;
  */ 
 public class DrawingCanvas extends JPanel implements MouseListener
 {
-	private SelectedShape shape;
-	private Map<Point,String> hashmap;
+	private transient SelectedShape shape;
 	public ArrayList<Point[]> lineArray = new ArrayList<Point[]>();
 	public ArrayList<Object> shapeObject = new ArrayList<Object>();
 	public DrawingCanvas()
 	{
-		hashmap=new HashMap();
 		shape = new SelectedShape();
 		this.setLayout(null);
 		addMouseListener(this);
+	}
+	
+	public void load()
+	{
+		for(int i=0; i<shapeObject.size(); i++)
+		{
+			this.add((JLabel)shapeObject.get(i));
+		}
 	}
 	
 	public void paint(Graphics g)
@@ -48,24 +54,26 @@ public class DrawingCanvas extends JPanel implements MouseListener
 		if(shape.name.equals("circle"))
 		{
 			DrawCircle figure = new DrawCircle(e.getX()-50,e.getY(),this);
-			this.add((JLabel)figure); 
+			this.add((JLabel)figure);
+			shapeObject.add(figure);
 			this.repaint();
 		}
 		
 		else if(shape.name.equals("square"))
 		{
 			DrawSquare figure = new DrawSquare(e.getX()-50,e.getY(),this);
-			this.add((JLabel)figure); 
+			this.add((JLabel)figure);
+			shapeObject.add(figure);
 			this.repaint();
 		}
 		
 		else if(shape.name.equals("triangle"))
 		{
 			DrawTriangle figure = new DrawTriangle(e.getX()-50,e.getY(),this);
-			this.add((JLabel)figure); 
+			this.add((JLabel)figure);
+			shapeObject.add(figure);
 			this.repaint();
 		}
-		this.hashmap.put(new Point(e.getX()-50,e.getY()), SelectedShape.name);
 	}
 
 	public void mouseEntered(MouseEvent arg0) {}
