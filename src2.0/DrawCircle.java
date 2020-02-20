@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Ellipse2D;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 /**
@@ -15,7 +16,7 @@ import javax.swing.JLabel;
  * @version 1.0
  *
  */
-public class DrawCircle extends JLabel implements MouseListener,MouseMotionListener
+public class DrawCircle extends DrawShape implements MouseListener,MouseMotionListener
 {
 	private int currentX;
 	private int currentY;
@@ -23,10 +24,9 @@ public class DrawCircle extends JLabel implements MouseListener,MouseMotionListe
 	private int relativeY;
 	private int HEIGHT= 100;
 	private int WIDTH = 100;
-	DrawingCanvas canvas;
 	public DrawCircle(int posX, int posY, DrawingCanvas c)
 	{
-		canvas = c;
+		super(c,"Circle");
 		currentX = posX;
 		currentY = posY;
 		Dimension size = new Dimension(HEIGHT,WIDTH);
@@ -46,10 +46,10 @@ public class DrawCircle extends JLabel implements MouseListener,MouseMotionListe
 	
 	private boolean contain(int x, int y) 
 	{
-		//System.out.println(x);
-		//System.out.println(y);
-		//System.out.println(WIDTH/2);
-		//System.out.println(HEIGHT/2);
+		System.out.println(x);
+		System.out.println(y);
+		System.out.println(WIDTH/2);
+		System.out.println(HEIGHT/2);
 		int ans = ((x-(WIDTH/2)) * (x-(WIDTH/2)) + 
 				(y-(HEIGHT/2)) * (y-(HEIGHT/2))) - 25;
 		
