@@ -6,7 +6,6 @@ import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -20,10 +19,11 @@ import javax.swing.JPanel;
 public class Frame extends JFrame
 {
 	private static final String FRAME_TITLE = "Team4";
-	
+	JFrame frame = new JFrame("Swing Tester");
+	private JTextField filename = new JTextField(), dir = new JTextField();
 	public Frame()
 	{
-		JFrame frame = new JFrame("Swing Tester");
+		
 	    this.setTitle(FRAME_TITLE);
 	    this.setMinimumSize(new Dimension(800, 600));
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,21 +36,11 @@ public class Frame extends JFrame
 	    menubar.add(menu);
 	    JMenuItem save= new JMenuItem("Save");
 	    JMenuItem load= new JMenuItem("Load");
+	    load.addActionListener(new OpenL());
+	    save.addActionListener(new SaveL());
 	    menu.add(save);
 	    menu.add(load);
-	    save.addActionListener(new ActionListener() {
-	         @Override
-	         public void actionPerformed(ActionEvent e) {
-	            JFileChooser fileChooser = new JFileChooser();
-	            int option = fileChooser.showSaveDialog(frame);
-	            if(option == JFileChooser.APPROVE_OPTION){
-	               File file = fileChooser.getSelectedFile();
-	               label.setText("File Saved as: " + file.getName());
-	            }else{
-	               label.setText("Save command canceled");
-	            }
-	         }
-	      });
+	    
 	    content.setLayout(new BoxLayout(content, BoxLayout.X_AXIS));
 	    content.add(new OptionsPanel());
 	    content.add(new DrawingCanvas());
@@ -58,7 +48,39 @@ public class Frame extends JFrame
 	    this.setLocationRelativeTo(null);
 	    this.setVisible(true);
 	}
-	
+	 class OpenL implements ActionListener {
+		    public void actionPerformed(ActionEvent e) {
+		      JFileChooser fc = new JFileChooser();
+		      // Demonstrate "Open" dialog:
+		      int rVal = fc.showOpenDialog(frame);
+		      if (rVal == JFileChooser.APPROVE_OPTION) {
+		        System.out.println(fc.getSelectedFile().getName());
+		        System.out.println(fc.getCurrentDirectory().toString());
+		        
+		      }
+		      if (rVal == JFileChooser.CANCEL_OPTION) {
+		        filename.setText("You pressed cancel");
+		        dir.setText("");
+		      }
+		    }
+		  }
+
+		  class SaveL implements ActionListener {
+		    public void actionPerformed(ActionEvent e) {
+		      JFileChooser fc = new JFileChooser();
+		      // Demonstrate "Save" dialog:
+		      int rVal = fc.showSaveDialog(frame);
+		      if (rVal == JFileChooser.APPROVE_OPTION) {
+		        filename.setText(fc.getSelectedFile().getName());
+		        dir.setText(fc.getCurrentDirectory().toString());
+		      }
+		      if (rVal == JFileChooser.CANCEL_OPTION) {
+		        filename.setText("You pressed cancel");
+		        dir.setText("");
+		      }
+		    }
+		  }
+
 	public static void main(String[] args) {
 		    new Frame();
 	}
