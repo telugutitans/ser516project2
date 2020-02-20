@@ -1,6 +1,9 @@
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Map;
+import java.util.HashMap;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 /** 
@@ -11,9 +14,10 @@ import javax.swing.JPanel;
 public class DrawingCanvas extends JPanel implements MouseListener
 {
 	private SelectedShape shape;
-	
+	private Map<Point,String> hashmap;
 	public DrawingCanvas()
 	{
+		hashmap=new HashMap();
 		shape = new SelectedShape();
 		this.setLayout(null);
 		addMouseListener(this);
@@ -48,6 +52,7 @@ public class DrawingCanvas extends JPanel implements MouseListener
 			this.add((JLabel)figure); 
 			this.repaint();
 		}
+		this.hashmap.put(new Point(e.getX()-50,e.getY()), SelectedShape.name);
 	}
 
 	public void mouseEntered(MouseEvent arg0) {}
