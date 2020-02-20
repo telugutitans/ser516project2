@@ -38,7 +38,7 @@ public class DrawCircle extends DrawShape implements MouseListener,MouseMotionLi
 	
 	public void paint(Graphics g)
 	{
-		g.setColor(Color.BLUE);
+		g.setColor(Color.ORANGE);
 		g.fillOval(0, 0, 100, 100);
 		g.setColor(Color.BLACK);
 		g.fillOval(HEIGHT/2-5, WIDTH/2-5, 10, 10);

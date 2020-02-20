@@ -46,7 +46,7 @@ public class DrawingCanvas extends JPanel implements MouseListener
 		
 		else if(shape.name.equals("square"))
 		{
-			DrawSquare figure = new DrawSquare(e.getX()-50,e.getY());
+			DrawSquare figure = new DrawSquare(e.getX()-50,e.getY(),this);
 			this.add((JLabel)figure); 
 			this.repaint();
 		}

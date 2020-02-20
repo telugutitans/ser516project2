@@ -40,7 +40,7 @@ public class DrawTriangle extends DrawShape implements MouseListener,MouseMotion
 	
 	public void paint(Graphics g)
 	{
-		g.setColor(Color.BLUE);
+		g.setColor(Color.ORANGE);
 		int xPoints[] = {WIDTH/2, 1, WIDTH-1};
 		int yPoints[] = {1, HEIGHT-1, HEIGHT-1};
 		g.fillPolygon(xPoints, yPoints, xPoints.length);

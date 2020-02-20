@@ -12,7 +12,7 @@ import javax.swing.JLabel;
  * @version 1.0
  *
  */
-public class DrawSquare extends JLabel implements MouseListener,MouseMotionListener
+public class DrawSquare extends DrawShape implements MouseListener,MouseMotionListener
 {
 	private int currentX;
 	private int currentY;
@@ -21,8 +21,9 @@ public class DrawSquare extends JLabel implements MouseListener,MouseMotionListe
 	private int HEIGHT= 100;
 	private int WIDTH = 100;
 	
-	public DrawSquare(int posX, int posY)
+	public DrawSquare(int posX, int posY, DrawingCanvas c)
 	{
+		super(c,"Square");
 		currentX = posX;
 		currentY = posY;
 		Dimension size = new Dimension(HEIGHT,WIDTH);
@@ -34,7 +35,7 @@ public class DrawSquare extends JLabel implements MouseListener,MouseMotionListe
 	
 	public void paint(Graphics g)
 	{
-		g.setColor(Color.BLUE);
+		g.setColor(Color.ORANGE);
 		g.fillRect(1, 1, WIDTH-1, HEIGHT-1);
 		g.setColor(Color.BLACK);
 		g.fillRect(WIDTH-7, 2, WIDTH-2, HEIGHT-2);
@@ -72,6 +73,8 @@ public class DrawSquare extends JLabel implements MouseListener,MouseMotionListe
 		if (this.contain(e.getX(), e.getY()))
 		{
 			System.out.print("Square clicked");
+			Click c1 = new Click(e.getX()+currentX, e.getY()+currentY, this);
+
 		}
 	}
 
