@@ -18,6 +18,7 @@ public class DrawingCanvas extends JPanel implements MouseListener
 	private SelectedShape shape;
 	private Map<Point,String> hashmap;
 	public ArrayList<Point[]> lineArray = new ArrayList<Point[]>();
+	public ArrayList<Object> shapeObject = new ArrayList<Object>();
 	public DrawingCanvas()
 	{
 		hashmap=new HashMap();
@@ -30,13 +31,16 @@ public class DrawingCanvas extends JPanel implements MouseListener
 	{
 		super.paint(g);
 		System.out.print("line drwan");
-		
+		System.out.print(lineArray.size());
 		for(int i=0; i<lineArray.size(); i++)
 		{
 			Point[] points = lineArray.get(i);
+			System.out.println(points[0].x);
+			System.out.println(points[0].y);
+			System.out.println(points[1].x);
+			System.out.println(points[1].y);
 			g.drawLine(points[0].x, points[0].y, points[1].x, points[1].y);
 		}
-		
 	}
 
 	@Override

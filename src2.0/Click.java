@@ -8,6 +8,10 @@ public class Click
 	static int x2;
 	static int y1;
 	static int y2;
+	static DrawShape shape1;
+	static DrawShape shape2;
+	static Point p1;
+	static Point p2;
 	public  Click(int x,int y, DrawShape shape)
 	{
 		if (numPoints == 0)
@@ -15,17 +19,27 @@ public class Click
 			x1=x;
 			y1=y;
 			numPoints += 1;
+			shape1 = shape;
+			p1 = new Point(x1,y1);
+			Point relative = new Point(x1 - shape.positionX, y1 - shape.positionY);
+			Point[] shapePoints = {p1,relative};
+			shape.connections.add(shapePoints);
 		}
 		else
 		{
+			shape2 = shape;
 			x2=x;
 			y2=y;
-			Point p1 = new Point(x1,y1);
-			Point p2 = new Point(x2,y2);
+			
+			p2 = new Point(x2,y2);
 			Point[] points = {p1,p2};
+			
+			Point relative = new Point(x2 - shape.positionX, y2 - shape.positionY);
+			Point[] shapePoints = {p2,relative};
+			shape.connections.add(shapePoints);
+			
 			shape.canvas.lineArray.add(points);
 			shape.canvas.repaint();
-			shape.connections[0] = x1;
 			numPoints=0;
 		}
 	}

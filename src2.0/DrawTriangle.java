@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.Shape;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -28,7 +29,7 @@ public class DrawTriangle extends DrawShape implements MouseListener,MouseMotion
 	
 	public DrawTriangle(int posX, int posY, DrawingCanvas c)
 	{
-		super(c,"Triangle");
+		super(c,"Triangle",posX,posY);
 		currentX = posX;
 		currentY = posY;
 		Dimension size = new Dimension(HEIGHT,WIDTH);
@@ -92,6 +93,29 @@ public class DrawTriangle extends DrawShape implements MouseListener,MouseMotion
 		setLocation(x1+relativeX,y1+relativeY);
 		currentX = x1+relativeX;
 		currentY = y1+relativeY;
+		for(int i=0; i<super.connections.size(); i++)
+		{
+			Point[] shapePoints = super.connections.get(i);
+			for(int j=0; j<super.canvas.lineArray.size(); j++)
+			{
+				Point[] linePoints = super.canvas.lineArray.get(j);
+				if(linePoints[0].equals(shapePoints[0]))
+				{
+					linePoints[0].x = currentX + shapePoints[1].x;
+					linePoints[0].y = currentY + shapePoints[1].y;
+					shapePoints[0].x = currentX + shapePoints[1].x;
+					shapePoints[0].y = currentY + shapePoints[1].y;
+				}
+				else if(linePoints[1].equals(shapePoints[0]))
+				{
+					linePoints[1].x = currentX + shapePoints[1].x;
+					linePoints[1].y = currentY + shapePoints[1].y;
+					shapePoints[0].x = currentX + shapePoints[1].x;
+					shapePoints[0].y = currentY + shapePoints[1].y;
+				}
+			}
+			super.canvas.repaint();
+		}
 	}
 
 	

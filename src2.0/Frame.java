@@ -6,6 +6,9 @@ import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -71,8 +74,20 @@ public class Frame extends JFrame
 		      // Demonstrate "Save" dialog:
 		      int rVal = fc.showSaveDialog(frame);
 		      if (rVal == JFileChooser.APPROVE_OPTION) {
-		        filename.setText(fc.getSelectedFile().getName());
-		        dir.setText(fc.getCurrentDirectory().toString());
+		        String fileName = fc.getSelectedFile().getName();
+		        String pathName = fc.getCurrentDirectory().toString();
+		        try (FileWriter file = new FileWriter(pathName+fileName)) {
+					//File Writer creates a file in write mode at the given location 
+					//file.write(obj.toJSONString());
+
+					//write function is use to write in file,
+					//here we write the Json object in the file
+					file.flush();
+
+				}
+				catch (IOException e1) {
+					e1.printStackTrace();
+				}
 		      }
 		      if (rVal == JFileChooser.CANCEL_OPTION) {
 		        filename.setText("You pressed cancel");
